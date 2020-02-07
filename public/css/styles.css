@@ -17,6 +17,7 @@
     font-weight: bold;
 }
 #session{
+    z-index: 10;
     position: absolute;
     display: none;
     margin-top: -15%; 
