@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Usuario;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,7 +41,16 @@ class PageController extends AbstractController
     {
         $user= $request->request->get("user");
         $password= $request->request->get("password");
-    if ($user!="" && $password!=""){
+
+        // $usuarioBBDD=$this->getDoctrine()
+        // ->getRepository(Usuario::class)
+        // ->findOneBy(['nombre' => $user]);
+
+        // $passwordBBDD=$this->getDoctrine()
+        // ->getRepository(Usuario::class)
+        // ->findOneBy(['contrasenya' => $password]);
+
+    if ($user !="" && $password !=""){
 
         $session->set('nombre_usuario', $user);
         $session->set('password', $password);
@@ -59,12 +69,9 @@ class PageController extends AbstractController
      */
     public function logOut(Request $request, SessionInterface $session)
     {
-
+        $session->clear();
         $session->invalidate();
-
-                return $this->redirectToRoute('index');  
-
-
+                return $this->redirectToRoute('index');
 
     }
 }
