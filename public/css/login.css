@@ -1,0 +1,25 @@
+.modal-get-offer .modal-content {
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	background: #d8cfca;
+  color:#FFF;    
+}
+.modal-get-offer .modal-content .modal-header {
+    text-align:center;
+     border: none;
+}
+
+.btn {
+    margin-left: 25px;
+    color: #000000;
+    background-color: #e52330;
+    border-color: #e52330;
+}
+
+.btn:hover {
+    color: #000000;
+    background-color: #f11927;
+    border-color: #f11927;
+}
+
