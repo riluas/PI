@@ -11,6 +11,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/script.js"></script>
+		<link href="css/main.css" rel="stylesheet"/>
 	</head>
 
 	<body>
@@ -32,10 +33,12 @@
 
 						{% if user != "" %}
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">								<h4>Hola
-									{{ app.session.get("nombre_usuario") }}</h4></a>
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+									<h4>Hola
+										{{ app.session.get("nombre_usuario") }}</h4>
+								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href={{ path('logOut') }} >Cerrar Sesión</a>
+									<a class="dropdown-item" href={{ path('logOut') }}>Cerrar Sesión</a>
 								</div>
 							</li>
 
@@ -53,10 +56,6 @@
 
 					<p class="lead">"El misterio de la vida no es un problema a resolver, sino una realidad a experimentar"</p>
 					<p class="ml-5">Duna, Frank Herbert</p>
-
-					<a class="btn btn-primary btn-lg" href="#" role="button">BUSCAR
-					</a>
-
 				</div>
 			</div>
 		</header>
@@ -104,6 +103,115 @@
 			</div>
 			<!--/container-->
 		</section>
+		<div class="s010">
+			<form>
+				<div class="inner-form">
+					<div class="basic-search">
+						<div class="input-field">
+							<input id="search" type="text" placeholder="Buscar..."/>
+							<div class="icon-wrap">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+									<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="advance-search">
+						<span class="desc">BUSQUEDA AVANZADA</span>
+						<div class="row">
+							<div class="input-field">
+								<div class="input-select">
+									<select data-trigger="" name="choices-single-defaul">
+										<option placeholder="" value="">Titulacion</option>
+										<option>Turismo y ADE</option>
+										<option>Turismo y GIHO</option>
+										<option>Ingeniería Electrónica Industrial y Automática</option>
+										<option>Ingeniería Mecánica</option>
+										<option>Ingeniería Mecánica y Electrónica Industrial y Automática</option>
+										<option>Ingeniería Mecánica</option>
+										<option>Diseño y Desarrollo de Videojuegos y Experiencias Interactivas</option>
+										<option>Administración y Dirección de Empresas y Título Propio en Digital Business</option>
+										<option>Administración y Dirección de Empresas (nocturno)</option>
+										<option>Maestro/a en Educación Infantil</option>
+										<option>Maestro/a en Educación Primaria</option>
+										<option>Maestro/a en Educación Infantil y Educación Primaria</option>
+										<option>Actualización Grado de Maestro/a</option>
+									</select>
+								</div>
+							</div><br>
+							<div class="input-field">
+								<div class="input-select">
+									<select data-trigger="" name="choices-single-defaul">
+										<option placeholder="" value="">Profesor responsable</option>
+										<option>Belen Gil</option>
+										<option>David Soler</option>
+										<option>Vicent Monfort</option>
+										<option>Pedro Elnabo</option>
+
+									</select>
+								</div>
+							</div><br>
+							<div class="input-field">
+								<div class="input-select">
+									<select data-trigger="" name="choices-single-defaul">
+										<option placeholder="" value="">Año</option>
+										<option>12/13</option>
+										<option>13/14</option>
+										<option>14/15</option>
+										<option>15/16</option>
+										<option>16/17</option>
+										<option>17/18</option>
+										<option>18/19</option>
+										<option>19/20</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<br>
+
+
+						<div class="row third">
+							<div class="input-field">
+								<div class="group-btn">
+									<button class="btn-delete" id="delete">RESTAURAR</button>
+									<button class="btn-search">BUSCAR</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script src="js/extention/choices.js"></script>
+		<script>
+			const customSelects = document.querySelectorAll("select");
+const deleteBtn = document.getElementById('delete')
+const choices = new Choices('select', {
+searchEnabled: false,
+itemSelectText: '',
+removeItemButton: true
+});
+for (let i = 0; i < customSelects.length; i++) {
+customSelects[i].addEventListener('addItem', function (event) {
+if (event.detail.value) {
+let parent = this.parentNode.parentNode
+parent.classList.add('valid')
+parent.classList.remove('invalid')
+} else {
+let parent = this.parentNode.parentNode
+parent.classList.add('invalid')
+parent.classList.remove('valid')
+}
+}, false);
+}
+deleteBtn.addEventListener("click", function (e) {
+e.preventDefault()
+const deleteAll = document.querySelectorAll('.choices__button')
+for (let i = 0; i < deleteAll.length; i++) {
+deleteAll[i].click();
+}
+});
+		</script>
 		{% block contenido %}{% endblock %}
 		<footer class="mt-5 text-center">
 			<hr>
@@ -113,11 +221,11 @@
 			</address>
 
 			<ul>
-				<li>
+				<li style="list-style: none;">
 					<i><img src="" alt=""></i>
 					<a href="/">Twitter</a>
 				</li>
-				<li>
+				<li style="list-style: none;">
 					<i><img src="" alt=""></i>
 					<a href="/food">Instagram</a>
 				</li>
