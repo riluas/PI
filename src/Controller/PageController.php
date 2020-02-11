@@ -42,19 +42,21 @@ class PageController extends AbstractController
         $user= $request->request->get("user");
         $password= $request->request->get("password");
 
-        // $usuarioBBDD=$this->getDoctrine()
-        // ->getRepository(Usuario::class)
-        // ->findOneBy(['nombre' => $user]);
+        $usuarioBBDD=$this->getDoctrine()
+        ->getRepository(Usuario::class)
+        ->findOneBy(['nombre' => $user]);
 
-        // $passwordBBDD=$this->getDoctrine()
-        // ->getRepository(Usuario::class)
-        // ->findOneBy(['contrasenya' => $password]);
+        $passwordBBDD=$this->getDoctrine()
+        ->getRepository(Usuario::class)
+        ->findOneBy(['contrasenya' => $password]);
 
     if ($user !="" && $password !=""){
 
         $session->set('nombre_usuario', $user);
         $session->set('password', $password);
             return $this->redirectToRoute('index', [
+                'info' => $usuarioBBDD
+
         ]);}
     else{
 

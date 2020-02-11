@@ -31,7 +31,6 @@
 						{% endif %}
 
 						{% if user != "" %}
-
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">								<h4>Hola
 									{{ app.session.get("nombre_usuario") }}</h4></a>
@@ -87,8 +86,9 @@
 												<input type="password" class="form-control form-control-lg rounded-0" name="password" id="password" required="" autocomplete="new-password">
 												<div class="invalid-feedback">Introduce la contraseña</div>
 											</div>
-											<input type="reset" value="Reset" class="button">
+											<input type="reset" class="btn btn-success btn-lg float-right" style="margin-left: 3%;" value="Reset" class="button">
 											<button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Acceder</button>
+											
 										</form>
 									</div>
 									<!--/card-block-->
