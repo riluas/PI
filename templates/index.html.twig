@@ -27,7 +27,10 @@
 						<li class="nav-item"></li>
 						{% if user == ""%}
 							<li>
-								<a class="nav-link" id="inicio" style="cursor: pointer">Iniciar Sesión</a>
+								<div class="row">
+									<img class=""src="images/user1.1.png" style="width:35px;"></img>
+									<a class="nav-link" id="inicio" style="cursor: pointer; color:black;"><strong>Iniciar Sesión</strong></a>
+								</div>
 							</li>
 						{% endif %}
 
@@ -48,13 +51,13 @@
 			</nav>
 
 			<!-- IMAGEN PRINCIPAL -->
-			<div class="pb-5 container-fluid" style="background-image: url(images/jumbotronIMG.jpg);background-size: cover">
+			<div class="pb-5 container-fluid" style="background-image: url(images/lel.jpg);background-position:center; background-size:cover ; background-repeat: no-repeat;">
 
 				<div class="jumbotron-fluid text-white">
 
 					<figure><img src="" alt=""></figure>
 
-					<p class="lead">"El misterio de la vida no es un problema a resolver, sino una realidad a experimentar"</p>
+					<p class="lead ml-1"><i>"El misterio de la vida no es un problema a resolver, sino una realidad a experimentar"</i></p>
 					<p class="ml-5">Duna, Frank Herbert</p>
 				</div>
 			</div>
@@ -117,12 +120,14 @@
 						</div>
 					</div>
 					<div class="advance-search">
-						<span class="desc">BUSQUEDA AVANZADA</span>
+						<span class="desc">BÚSQUEDA AVANZADA</span>
 						<div class="row">
+
+						
 							<div class="input-field">
 								<div class="input-select">
 									<select data-trigger="" name="choices-single-defaul">
-										<option placeholder="" value="">Titulacion</option>
+										<option placeholder="" value="">Titulación</option>
 										<option>Turismo y ADE</option>
 										<option>Turismo y GIHO</option>
 										<option>Ingeniería Electrónica Industrial y Automática</option>
@@ -139,6 +144,7 @@
 									</select>
 								</div>
 							</div><br>
+
 							<div class="input-field">
 								<div class="input-select">
 									<select data-trigger="" name="choices-single-defaul">
@@ -151,6 +157,7 @@
 									</select>
 								</div>
 							</div><br>
+
 							<div class="input-field">
 								<div class="input-select">
 									<select data-trigger="" name="choices-single-defaul">
@@ -166,8 +173,7 @@
 									</select>
 								</div>
 							</div>
-						</div>
-						<br>
+						</div><br>
 
 
 						<div class="row third">
@@ -220,15 +226,18 @@ deleteAll[i].click();
 				floridaUniversitariaBiblioteca@gmail.com
 			</address>
 
-			<ul>
-				<li style="list-style: none;">
-					<i><img src="" alt=""></i>
-					<a href="/">Twitter</a>
-				</li>
-				<li style="list-style: none;">
-					<i><img src="" alt=""></i>
-					<a href="/food">Instagram</a>
-				</li>
+			<ul class="row">
+				<div class="col">
+					<li style="list-style: none;">
+						<a href="https://twitter.com/floridauni"><i><img class="fut" src="images/twitter.png" alt=""></i></a>
+					</li>
+				</div>
+				
+				<div class="col">
+					<li style="list-style: none;">
+						<a href="https://www.facebook.com/floridauniversitaria"><i><img class="fut" src="images/facebook.png" alt=""></i></a>
+					</li>
+				</div>
 			</ul>
 
 		</footer>

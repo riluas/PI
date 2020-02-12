@@ -31,3 +31,8 @@
 #cerrar:hover{
    color: rgb(229, 35, 48);
 }
+
+.fut:hover{
+    opacity: 0.5;
+    transition: 1.5s;
+}
