@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Pi;
+use App\Entity\Proyecto;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Pi|null find($id, $lockMode = null, $lockVersion = null)
- * @method Pi|null findOneBy(array $criteria, array $orderBy = null)
- * @method Pi[]    findAll()
- * @method Pi[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Proyecto|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Proyecto|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Proyecto[]    findAll()
+ * @method Proyecto[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PiRepository extends ServiceEntityRepository
+class ProyectoRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Pi::class);
+        parent::__construct($registry, Proyecto::class);
     }
 
     // /**
-    //  * @return Pi[] Returns an array of Pi objects
+    //  * @return Proyecto[] Returns an array of Proyecto objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PiRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Pi
+    public function findOneBySomeField($value): ?Proyecto
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

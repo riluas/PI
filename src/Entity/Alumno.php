@@ -22,7 +22,7 @@ class Alumno
     private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(type="string", length=50)
      */
     private $apellidos;
 
@@ -48,7 +48,7 @@ class Alumno
         return $this->apellidos;
     }
 
-    public function setApellidos(?string $apellidos): self
+    public function setApellidos(string $apellidos): self
     {
         $this->apellidos = $apellidos;
 
