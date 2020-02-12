@@ -76,4 +76,24 @@ class PageController extends AbstractController
                 return $this->redirectToRoute('index');
 
     }
+
+
+
+    /**
+    * @Route("/pagResults/{currentPage?1}", name="paginador")
+    */
+        public function paginador(Request $request, SessionInterface $session, $currentPage)
+        {
+            $user = $session->get('nombre_usuario');
+            
+
+            return $this->render('pagResults.html.twig',[
+                'currentPage' => $currentPage,
+                'user' => $user,
+                'data' => $this->proyecto,
+                'controller_name' => 'PageController',
+
+            ]);
+        }
+
 }
