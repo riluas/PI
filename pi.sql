@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-02-2020 a las 11:41:52
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.2
+-- Tiempo de generación: 12-02-2020 a las 10:18:35
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alumno` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `apellidos` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellidos` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -41,10 +41,10 @@ CREATE TABLE `alumno` (
 --
 
 CREATE TABLE `alumnoxpi` (
-  `id_pi_id` int(11) NOT NULL,
   `id` int(11) NOT NULL,
-  `id_alumno_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `pi_id_id` int(11) DEFAULT NULL,
+  `alumno_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -54,32 +54,42 @@ CREATE TABLE `alumnoxpi` (
 
 CREATE TABLE `documento` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `formato` varchar(50) NOT NULL,
-  `id_pi_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `pi_id_id` int(11) DEFAULT NULL,
+  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `formato` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pi`
+-- Estructura de tabla para la tabla `migration_versions`
 --
 
-CREATE TABLE `pi` (
+CREATE TABLE `migration_versions` (
+  `version` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `executed_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `migration_versions`
+--
+
+INSERT INTO `migration_versions` (`version`, `executed_at`) VALUES
+('20200212091029', '2020-02-12 09:10:45');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proyecto`
+--
+
+CREATE TABLE `proyecto` (
   `id` int(11) NOT NULL,
-  `titulo` varchar(50) NOT NULL,
-  `cursoEscolar` varchar(50) NOT NULL,
-  `profesorResponsable` varchar(25) NOT NULL,
-  `descripcion` varchar(100) NOT NULL,
-  `idTitulacion` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `pi`
---
-
-INSERT INTO `pi` (`id`, `titulo`, `cursoEscolar`, `profesorResponsable`, `descripcion`, `idTitulacion`) VALUES
-(1, 'Hola', '19/20', 'Bernardo', 'Hola que tal os va', '2daw');
+  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `curso_escolar` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `profesor_responsable` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -88,17 +98,11 @@ INSERT INTO `pi` (`id`, `titulo`, `cursoEscolar`, `profesorResponsable`, `descri
 --
 
 CREATE TABLE `titulacion` (
-  `id` varchar(50) NOT NULL,
-  `titulo` varchar(50) NOT NULL,
-  `curso` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `titulacion`
---
-
-INSERT INTO `titulacion` (`id`, `titulo`, `curso`) VALUES
-('2daw', 'daw', '2');
+  `id` int(11) NOT NULL,
+  `pi_id_id` int(11) DEFAULT NULL,
+  `titulo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `curso` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -108,21 +112,9 @@ INSERT INTO `titulacion` (`id`, `titulo`, `curso`) VALUES
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `username` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contrasenya` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` tinyint(1) NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -140,39 +132,39 @@ ALTER TABLE `alumno`
 --
 ALTER TABLE `alumnoxpi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_249B602EE5BF249` (`id_pi_id`),
-  ADD KEY `IDX_249B602E7C1D59C9` (`id_alumno_id`);
+  ADD KEY `IDX_249B602E93E294A7` (`pi_id_id`),
+  ADD KEY `FK_alumnoxpi_alumno` (`alumno_id`);
 
 --
 -- Indices de la tabla `documento`
 --
 ALTER TABLE `documento`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_B6B12EC7E5BF249` (`id_pi_id`);
+  ADD KEY `IDX_B6B12EC793E294A7` (`pi_id_id`);
 
 --
--- Indices de la tabla `pi`
+-- Indices de la tabla `migration_versions`
 --
-ALTER TABLE `pi`
+ALTER TABLE `migration_versions`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- Indices de la tabla `proyecto`
+--
+ALTER TABLE `proyecto`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `titulacion`
 --
 ALTER TABLE `titulacion`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_873C182493E294A7` (`pi_id_id`);
 
 --
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_8D93D649F85E0677` (`username`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -183,7 +175,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `alumnoxpi`
@@ -195,18 +187,24 @@ ALTER TABLE `alumnoxpi`
 -- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `proyecto`
+--
+ALTER TABLE `proyecto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `titulacion`
+--
+ALTER TABLE `titulacion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -217,14 +215,20 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `alumnoxpi`
 --
 ALTER TABLE `alumnoxpi`
-  ADD CONSTRAINT `FK_alumnoxpi_alumno` FOREIGN KEY (`id_alumno_id`) REFERENCES `alumno` (`id`),
-  ADD CONSTRAINT `FK_alumnoxpi_pi` FOREIGN KEY (`id_pi_id`) REFERENCES `pi` (`id`);
+  ADD CONSTRAINT `FK_249B602E93E294A7` FOREIGN KEY (`pi_id_id`) REFERENCES `proyecto` (`id`),
+  ADD CONSTRAINT `FK_alumnoxpi_alumno` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`);
 
 --
 -- Filtros para la tabla `documento`
 --
 ALTER TABLE `documento`
-  ADD CONSTRAINT `FK_B6B12EC7E5BF249` FOREIGN KEY (`id_pi_id`) REFERENCES `pi` (`id`);
+  ADD CONSTRAINT `FK_B6B12EC793E294A7` FOREIGN KEY (`pi_id_id`) REFERENCES `proyecto` (`id`);
+
+--
+-- Filtros para la tabla `titulacion`
+--
+ALTER TABLE `titulacion`
+  ADD CONSTRAINT `FK_873C182493E294A7` FOREIGN KEY (`pi_id_id`) REFERENCES `proyecto` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
