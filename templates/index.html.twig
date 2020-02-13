@@ -7,8 +7,8 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Repositorio Florida</title>
 		<!-- Link a Boostrap -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link
+		rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 		<!-- Links CSS -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -16,8 +16,8 @@
 		<link rel="stylesheet" href="css/popup.css">
 		<link href="css/main.css" rel="stylesheet"/>
 		<link href="css/login.css" rel="stylesheet"/>
-		<link href="css/popup.css" rel="stylesheet"/>
-		
+		<link
+		href="css/popup.css" rel="stylesheet"/>
 
 
 		<!-- Scripts JavaScript -->
@@ -191,31 +191,33 @@
 		<script src="js/extention/choices.js"></script>
 		<script>
 			const customSelects = document.querySelectorAll("select");
-			const deleteBtn = document.getElementById('delete')
-			const choices = new Choices('select', {
-			searchEnabled: false,
-			itemSelectText: '',
-			removeItemButton: true});
+const deleteBtn = document.getElementById('delete')
+const choices = new Choices('select', {
+searchEnabled: false,
+itemSelectText: '',
+removeItemButton: true
+});
 
-			for (let i = 0; i < customSelects.length; i++) {
-			customSelects[i].addEventListener('addItem', function (event) {
-				if (event.detail.value) {
-					let parent = this.parentNode.parentNode
-					parent.classList.add('valid')
-					parent.classList.remove('invalid')
-			} 	else {
-					let parent = this.parentNode.parentNode
-					parent.classList.add('invalid')
-					parent.classList.remove('valid')}
-				}, false);
-			}
-				deleteBtn.addEventListener("click", function (e) {
-				e.preventDefault()
-				const deleteAll = document.querySelectorAll('.choices__button')
-				for (let i = 0; i < deleteAll.length; i++) {
-					deleteAll[i].click();
-				}
-			});
+for (let i = 0; i < customSelects.length; i++) {
+customSelects[i].addEventListener('addItem', function (event) {
+if (event.detail.value) {
+let parent = this.parentNode.parentNode
+parent.classList.add('valid')
+parent.classList.remove('invalid')
+} else {
+let parent = this.parentNode.parentNode
+parent.classList.add('invalid')
+parent.classList.remove('valid')
+}
+}, false);
+}
+deleteBtn.addEventListener("click", function (e) {
+e.preventDefault()
+const deleteAll = document.querySelectorAll('.choices__button')
+for (let i = 0; i < deleteAll.length; i++) {
+deleteAll[i].click();
+}
+});
 		</script>
 		{% block contenido %}{% endblock %}
 		<footer class="mt-5 text-center">
@@ -228,13 +230,17 @@
 			<ul class="row">
 				<div class="col">
 					<li style="list-style: none;">
-						<a href="https://twitter.com/floridauni"><i><img class="fut" src="images/twitter.png" alt=""></i></a>
+						<a href="https://twitter.com/floridauni">
+							<i><img class="fut" src="images/twitter.png" alt=""></i>
+						</a>
 					</li>
 				</div>
-				
+
 				<div class="col">
 					<li style="list-style: none;">
-						<a href="https://www.facebook.com/floridauniversitaria"><i><img class="fut" src="images/logoBlancoFacebook.png" alt=""></i></a>
+						<a href="https://www.facebook.com/floridauniversitaria">
+							<i><img class="fut" src="images/logoBlancoFacebook.png" alt="" style=""/></i>
+						</a>
 					</li>
 				</div>
 			</ul>
