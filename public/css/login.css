@@ -1,0 +1,53 @@
+.modal-get-offer .modal-content {
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    background: #d8cfca;
+    color: #FFF;
+}
+
+.modal-get-offer .modal-content .modal-header {
+    text-align: center;
+    border: none;
+}
+
+.btn-default {
+    background: #e52330
+}
+
+.btn {
+    border-radius: 20px;
+    font-size: 17px;
+    color: black;
+    width: 105.3px;
+    background-color: #ababab;
+    margin-left: 20px;
+}
+
+.btn:hover {
+    background-color: #e52330;
+    color: white;
+}
+
+.login {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.login:hover {
+    text-decoration: underline;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    margin-right: 50px;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.form-group {
+    padding-left: 15px;
+    margin-bottom: 1rem;
+    padding-right: 15px;
+}

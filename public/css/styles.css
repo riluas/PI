@@ -1,12 +1,37 @@
-.nav-color{
+.nav-color {
     background-color: rgb(229, 35, 48);
 }
 
-.footer-color{
+.footer-color {
     background-color: #7f7c79;
 }
 
-#cerrar{
+
+.modal-body {
+    text-align: left;
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+
+.btn2{
+    color: black;
+    width: 105.3px;
+    margin-left: 25px;
+    background-color: #d8cfca;
+    border-color: black;
+}
+
+.btn2:hover {
+    color: white;
+    background-color: #f11927;
+    border-color: #f11927;
+}
+
+
+#cerrar {
     cursor: pointer;
     color: hsla(356, 77%, 56%, 0.938);
     position: relative;
@@ -16,18 +41,50 @@
     font-size: 20px;
     font-weight: bold;
 }
-#session{
+
+#session {
     z-index: 10;
     position: absolute;
     display: none;
-    margin-top: -15%; 
+    margin-top: -15%;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
-    
 }
 
-#cerrar:hover{
-   color: rgb(229, 35, 48);
+#cerrar:hover {
+    color: rgb(229, 35, 48);
+}
+
+.fut:hover {
+    opacity: 0.5;
+    transition: 1.5s;
+}
+
+.col {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+footer{
+    background-color: #f11927;
+    color: white;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ img.fut {
+    height:70px;
+    padding-bottom:15px
 }
