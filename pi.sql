@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-02-2020 a las 10:18:35
+-- Tiempo de generación: 13-02-2020 a las 13:41:39
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -34,6 +34,12 @@ CREATE TABLE `alumno` (
   `apellidos` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `alumno`
+--
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -43,8 +49,14 @@ CREATE TABLE `alumno` (
 CREATE TABLE `alumnoxpi` (
   `id` int(11) NOT NULL,
   `pi_id_id` int(11) DEFAULT NULL,
-  `alumno_id` int(11) NOT NULL
+  `alumno_id_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `alumnoxpi`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -58,6 +70,12 @@ CREATE TABLE `documento` (
   `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `formato` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `documento`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -74,8 +92,23 @@ CREATE TABLE `migration_versions` (
 -- Volcado de datos para la tabla `migration_versions`
 --
 
-INSERT INTO `migration_versions` (`version`, `executed_at`) VALUES
-('20200212091029', '2020-02-12 09:10:45');
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `prof`
+--
+
+CREATE TABLE `prof` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `prof`
+--
+
 
 -- --------------------------------------------------------
 
@@ -87,9 +120,16 @@ CREATE TABLE `proyecto` (
   `id` int(11) NOT NULL,
   `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `curso_escolar` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `profesor_responsable` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prof_id` int(11) DEFAULT NULL,
+  `titulacion_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `proyecto`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -99,10 +139,15 @@ CREATE TABLE `proyecto` (
 
 CREATE TABLE `titulacion` (
   `id` int(11) NOT NULL,
-  `pi_id_id` int(11) DEFAULT NULL,
-  `titulo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `curso` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `afsdf` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `titulacion`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -116,6 +161,11 @@ CREATE TABLE `user` (
   `roles` tinyint(1) NOT NULL,
   `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
 
 --
 -- Índices para tablas volcadas
@@ -133,7 +183,7 @@ ALTER TABLE `alumno`
 ALTER TABLE `alumnoxpi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_249B602E93E294A7` (`pi_id_id`),
-  ADD KEY `FK_alumnoxpi_alumno` (`alumno_id`);
+  ADD KEY `IDX_249B602ED3819735` (`alumno_id_id`);
 
 --
 -- Indices de la tabla `documento`
@@ -149,17 +199,24 @@ ALTER TABLE `migration_versions`
   ADD PRIMARY KEY (`version`);
 
 --
+-- Indices de la tabla `prof`
+--
+ALTER TABLE `prof`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_6FD202B9ABC1F7FE` (`prof_id`),
+  ADD KEY `IDX_6FD202B9F471CF55` (`titulacion_id`);
 
 --
 -- Indices de la tabla `titulacion`
 --
 ALTER TABLE `titulacion`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_873C182493E294A7` (`pi_id_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `user`
@@ -175,37 +232,43 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `alumnoxpi`
 --
 ALTER TABLE `alumnoxpi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `prof`
+--
+ALTER TABLE `prof`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `titulacion`
 --
 ALTER TABLE `titulacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -216,7 +279,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `alumnoxpi`
   ADD CONSTRAINT `FK_249B602E93E294A7` FOREIGN KEY (`pi_id_id`) REFERENCES `proyecto` (`id`),
-  ADD CONSTRAINT `FK_alumnoxpi_alumno` FOREIGN KEY (`alumno_id`) REFERENCES `alumno` (`id`);
+  ADD CONSTRAINT `FK_249B602ED3819735` FOREIGN KEY (`alumno_id_id`) REFERENCES `alumno` (`id`);
 
 --
 -- Filtros para la tabla `documento`
@@ -225,10 +288,11 @@ ALTER TABLE `documento`
   ADD CONSTRAINT `FK_B6B12EC793E294A7` FOREIGN KEY (`pi_id_id`) REFERENCES `proyecto` (`id`);
 
 --
--- Filtros para la tabla `titulacion`
+-- Filtros para la tabla `proyecto`
 --
-ALTER TABLE `titulacion`
-  ADD CONSTRAINT `FK_873C182493E294A7` FOREIGN KEY (`pi_id_id`) REFERENCES `proyecto` (`id`);
+ALTER TABLE `proyecto`
+  ADD CONSTRAINT `FK_6FD202B9ABC1F7FE` FOREIGN KEY (`prof_id`) REFERENCES `prof` (`id`),
+  ADD CONSTRAINT `FK_6FD202B9F471CF55` FOREIGN KEY (`titulacion_id`) REFERENCES `titulacion` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

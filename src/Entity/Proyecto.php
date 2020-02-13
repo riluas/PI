@@ -29,11 +29,6 @@ class Proyecto
     private $curso_escolar;
 
     /**
-     * @ORM\Column(type="string", length=25)
-     */
-    private $profesor_responsable;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $descripcion;
@@ -49,16 +44,15 @@ class Proyecto
     private $documentos;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Titulacion", mappedBy="pi_id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prof", inversedBy="proyectos")
      */
-    private $titulacions;
+    private $prof;
 
-    public function __construct()
-    {
-        $this->alumnoxpis = new ArrayCollection();
-        $this->documentos = new ArrayCollection();
-        $this->titulacions = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Titulacion", inversedBy="proyectos")
+     */
+    private $titulacion;
+
 
 
     public function getId(): ?int
@@ -90,17 +84,6 @@ class Proyecto
         return $this;
     }
 
-    public function getProfesorResponsable(): ?string
-    {
-        return $this->profesor_responsable;
-    }
-
-    public function setProfesorResponsable(string $profesor_responsable): self
-    {
-        $this->profesor_responsable = $profesor_responsable;
-
-        return $this;
-    }
 
     public function getDescripcion(): ?string
     {
@@ -176,33 +159,14 @@ class Proyecto
         return $this;
     }
 
-    /**
-     * @return Collection|Titulacion[]
-     */
-    public function getTitulacions(): Collection
+    public function getProf(): ?prof
     {
-        return $this->titulacions;
+        return $this->prof;
     }
 
-    public function addTitulacion(Titulacion $titulacion): self
+    public function setProf(?prof $prof): self
     {
-        if (!$this->titulacions->contains($titulacion)) {
-            $this->titulacions[] = $titulacion;
-            $titulacion->setPiId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTitulacion(Titulacion $titulacion): self
-    {
-        if ($this->titulacions->contains($titulacion)) {
-            $this->titulacions->removeElement($titulacion);
-            // set the owning side to null (unless already changed)
-            if ($titulacion->getPiId() === $this) {
-                $titulacion->setPiId(null);
-            }
-        }
+        $this->prof = $prof;
 
         return $this;
     }

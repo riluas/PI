@@ -1,6 +1,6 @@
-{% extends "layout.html.twig" %}
-{% block contenido %}
-<section>
+{% extends "index.html.twig" %}
+{% block busqueda %}
+{{ ses | default("") }}
 		<div class="s010">
 			<form action="{{ url("resultados") }}" method="POST">
 				<div class="inner-form">
@@ -98,56 +98,5 @@ for (let i = 0; i < deleteAll.length; i++) {
 deleteAll[i].click();
 }
 });
-</script>
-</section>
-
-<!-- SECCION ULTIMOS TRABAJOS -->
-		<section>
-		
-			<div class="container mt-5"> <h2 class="text-center">ULTIMOS TRABAJOS</h2>
-
-			<div class="row mt-5">
-
-				<div class="col-md-4 ">
-					<div class="card">
-						<div class="card-body text-left">
-							<h5 class="card-title">Las aventuras de Tadeo Jones</h5>
-							<h6 class="card-subtitle mb-2 text-muted">Miguel Angelo</h6>
-							<p class="card-text">"Este es un fackin otaku que sale de casa a dar por culo..."</p>
-							<a href="#" class="card-link">Ver</a>
-							<a href="#" class="card-link">Descargar</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body text-center">
-							<h5 class="card-title">Las aventuras de Tadeo Jones</h5>
-							<h6 class="card-subtitle mb-2 text-muted">Miguel Angelo</h6>
-							<p class="card-text">"Este es un fackin otaku que sale de casa a dar por culo..."</p>
-							<a href="#" class="card-link">Ver</a>
-							<a href="#" class="card-link">Descargar</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body text-right">
-							<h5 class="card-title">Las aventuras de Tadeo Jones</h5>
-							<h6 class="card-subtitle mb-2 text-muted">Miguel Angelo</h6>
-							<p class="card-text">"Este es un fackin otaku que sale de casa a dar por culo..."</p>
-							<a href="#" class="card-link">Ver</a>
-							<a href="#" class="card-link">Descargar</a>
-						</div>
-					</div>
-				</div>
-
-			</div>
-			<!--final row -->
-
-		</div>
-	</section>
-
+		</script>
 {% endblock %}

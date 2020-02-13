@@ -1,0 +1,11 @@
+{% extends "layout.html.twig" %}
+{% block contenido %}
+{# <p>{{grado[0].getCursoEscolar()}}</p> #}
+{% if (resultado|length) > 0 %}
+<p>{{resultado[0].getProf().getNombre()}}</p>
+<p>{{resultado[0].getCursoEscolar()}}</p>
+<p>{{resultado[0].getTitulo()}}</p>
+{% endif %}
+
+
+{% endblock %}

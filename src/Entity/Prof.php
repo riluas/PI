@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TitulacionRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProfRepository")
  */
-class Titulacion
+class Prof
 {
     /**
      * @ORM\Id()
@@ -24,10 +24,9 @@ class Titulacion
     private $nombre;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Proyecto", mappedBy="titulacion")
+     * @ORM\OneToMany(targetEntity="App\Entity\Proyecto", mappedBy="prof")
      */
     private $proyectos;
-
 
     public function __construct()
     {
@@ -63,7 +62,7 @@ class Titulacion
     {
         if (!$this->proyectos->contains($proyecto)) {
             $this->proyectos[] = $proyecto;
-            $proyecto->setTitulacion($this);
+            $proyecto->setProf($this);
         }
 
         return $this;
@@ -74,12 +73,11 @@ class Titulacion
         if ($this->proyectos->contains($proyecto)) {
             $this->proyectos->removeElement($proyecto);
             // set the owning side to null (unless already changed)
-            if ($proyecto->getTitulacion() === $this) {
-                $proyecto->setTitulacion(null);
+            if ($proyecto->getProf() === $this) {
+                $proyecto->setProf(null);
             }
         }
 
         return $this;
     }
-
 }
