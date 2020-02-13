@@ -6,12 +6,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Repositorio Florida</title>
+		<!-- Link a Boostrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<!-- Links CSS -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/popup.css">
+		<link href="css/main.css" rel="stylesheet"/>
+		<link href="css/login.css" rel="stylesheet"/>
+		<link href="css/popup.css" rel="stylesheet"/>
+		
+
+
+		<!-- Scripts JavaScript -->
+		<script src="js/popup.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/script.js"></script>
-		<link href="css/main.css" rel="stylesheet"/>
 	</head>
 
 	<body>
@@ -23,23 +36,19 @@
 				</button>
 
 
-				<div class="text-center">
-					<a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Iniciar Sesión</a>
-				</div>
-
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto my-2 my-lg-0">
 						<li class="nav-item"></li>
 						{% if user == ""%}
 							<li>
-								<a class="nav-link" id="inicio" style="cursor:pointer">Iniciar Sesión</a>
+								<a href="" class="login w-100 font-weight-bold" data-toggle="modal" data-target="#modalLoginForm">Iniciar Sesión</a>
 							</li>
 						{% endif %}
 						{% if user != "" %}
 
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-									<h4>Hola
+									<h4 class="login w-100 font-weight-bold">Hola
 										{{ app.session.get("nombre_usuario") }}</h4>
 								</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -53,7 +62,7 @@
 			</nav>
 
 			<!-- IMAGEN PRINCIPAL -->
-			<div class="pb-5 container-fluid" style="background-image: url(images/jumbotronIMG.jpg);background-size: cover">
+			<div class="pb-5 container-fluid" style="background-image: url(images/lel.jpg);background-position:center; background-size:cover ; background-repeat: no-repeat;">
 
 				<div class="jumbotron-fluid text-white">
 
@@ -74,7 +83,7 @@
 						<div class="modal-header text-center">
 							<h4 class="modal-title w-100 font-weight-bold">Iniciar Sesión</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
+								<span class="close-popup" aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<form class="form" action="{{ url("sendlogin") }}" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
@@ -88,12 +97,13 @@
 								<input type="password" class="form-control form-control-lg rounded-0" name="password" id="password" required="" autocomplete="new-password">
 								<div class="invalid-feedback">Introduce la contraseña</div>
 							</div>
-							<input type="reset" value="Reset" class="button">
-							<button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Acceder</button>
+
+							<div class="modal-footer d-flex justify-content-center">
+								<input type="reset" value="Reset" class="btn btn-lg float-left">
+								<button type="submit" class="btn btn-lg float-right" id="btnLogin">Acceder</button>
+
+							</div>
 						</form>
-						<div class="modal-footer d-flex justify-content-center">
-							<button class="btn btn-default">Login</button>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -181,32 +191,31 @@
 		<script src="js/extention/choices.js"></script>
 		<script>
 			const customSelects = document.querySelectorAll("select");
-const deleteBtn = document.getElementById('delete')
-const choices = new Choices('select', {
-searchEnabled: false,
-itemSelectText: '',
-removeItemButton: true
-});
-for (let i = 0; i < customSelects.length; i++) {
-customSelects[i].addEventListener('addItem', function (event) {
-if (event.detail.value) {
-let parent = this.parentNode.parentNode
-parent.classList.add('valid')
-parent.classList.remove('invalid')
-} else {
-let parent = this.parentNode.parentNode
-parent.classList.add('invalid')
-parent.classList.remove('valid')
-}
-}, false);
-}
-deleteBtn.addEventListener("click", function (e) {
-e.preventDefault()
-const deleteAll = document.querySelectorAll('.choices__button')
-for (let i = 0; i < deleteAll.length; i++) {
-deleteAll[i].click();
-}
-});
+			const deleteBtn = document.getElementById('delete')
+			const choices = new Choices('select', {
+			searchEnabled: false,
+			itemSelectText: '',
+			removeItemButton: true});
+
+			for (let i = 0; i < customSelects.length; i++) {
+			customSelects[i].addEventListener('addItem', function (event) {
+				if (event.detail.value) {
+					let parent = this.parentNode.parentNode
+					parent.classList.add('valid')
+					parent.classList.remove('invalid')
+			} 	else {
+					let parent = this.parentNode.parentNode
+					parent.classList.add('invalid')
+					parent.classList.remove('valid')}
+				}, false);
+			}
+				deleteBtn.addEventListener("click", function (e) {
+				e.preventDefault()
+				const deleteAll = document.querySelectorAll('.choices__button')
+				for (let i = 0; i < deleteAll.length; i++) {
+					deleteAll[i].click();
+				}
+			});
 		</script>
 		{% block contenido %}{% endblock %}
 		<footer class="mt-5 text-center">
@@ -216,18 +225,19 @@ deleteAll[i].click();
 				floridaUniversitariaBiblioteca@gmail.com
 			</address>
 
-			<ul>
-				<li style="list-style: none;">
-					<i><img src="" alt=""></i>
-					<a href="/">Twitter</a>
-				</li>
-				<li style="list-style: none;">
-					<i><img src="" alt=""></i>
-					<a href="/food">Instagram</a>
-				</li>
+			<ul class="row">
+				<div class="col">
+					<li style="list-style: none;">
+						<a href="https://twitter.com/floridauni"><i><img class="fut" src="images/twitter.png" alt=""></i></a>
+					</li>
+				</div>
+				
+				<div class="col">
+					<li style="list-style: none;">
+						<a href="https://www.facebook.com/floridauniversitaria"><i><img class="fut" src="images/logoBlancoFacebook.png" alt=""></i></a>
+					</li>
+				</div>
 			</ul>
-
 		</footer>
 	</body>
-
 </html>

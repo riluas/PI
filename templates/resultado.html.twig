@@ -1,6 +1,6 @@
 {% extends "index.html.twig" %}
 {% block contenido %}
-{{ ses | default("") }}
+	{{ ses | default("") }}
 	<!-- MIDDLE CONTENT -->
 	<!-- SECCION ULTIMOS TRABAJOS -->
 		<section>
@@ -8,14 +8,49 @@
 
 			<div class="row mt-5">
 
-				<div class="col-md-4 ">
-					<div class="card">
-						<div class="card-body text-left">
+				<div class="col-md">
+					<div class="card mb-3 text-center">
+						<div class="card-body text-center">
 							<h5 class="card-title">Las aventuras de Tadeo Jones</h5>
 							<h6 class="card-subtitle mb-2 text-muted">Miguel Angelo</h6>
 							<p class="card-text">"Este es un fackin otaku que sale de casa a dar por culo..."</p>
-							<a href="#" class="card-link">Ver</a>
-							<a href="#" class="card-link">Descargar</a>
+
+							<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+								Más Info
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Aqui va el titulo</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<img class="imagen-popup" src="img/logo.png" alt="" srcset="">
+											<p>
+												<b>Curso Escolar</b>: 19/20</p><br>
+											<p>
+												<b>
+													Profesor responsable</b>: Ambrosio</p><br>
+											<p>
+												<b>Titulacion</b>: 2 DAW</p><br>
+											<p>
+												<b>
+													Privacidad</b>: CopyRight</p><br>
+											<p>
+												<b>Resumen</b>: Lorem ipsum dolor sit amet consectetur</p>
+										</div>
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Visualizar</button>
+											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Descargar</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -26,20 +61,88 @@
 							<h5 class="card-title">Las aventuras de Tadeo Jones</h5>
 							<h6 class="card-subtitle mb-2 text-muted">Miguel Angelo</h6>
 							<p class="card-text">"Este es un fackin otaku que sale de casa a dar por culo..."</p>
-							<a href="#" class="card-link">Ver</a>
-							<a href="#" class="card-link">Descargar</a>
+							<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+								Más Info
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Aqui va el titulo</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<img class="imagen-popup" src="img/logo.png" alt="" srcset="">
+											<p>
+												<b>Curso Escolar</b>: 19/20</p><br>
+											<p>
+												<b>
+													Profesor responsable</b>: Ambrosio</p><br>
+											<p>
+												<b>Titulacion</b>: 2 DAW</p><br>
+											<p>
+												<b>
+													Privacidad</b>: CopyRight</p><br>
+											<p>
+												<b>Resumen</b>: Lorem ipsum dolor sit amet consectetur</p>
+										</div>
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Visualizar</button>
+											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Descargar</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="col-md-4">
 					<div class="card">
-						<div class="card-body text-right">
+						<div class="card-body text-center">
 							<h5 class="card-title">Las aventuras de Tadeo Jones</h5>
 							<h6 class="card-subtitle mb-2 text-muted">Miguel Angelo</h6>
 							<p class="card-text">"Este es un fackin otaku que sale de casa a dar por culo..."</p>
-							<a href="#" class="card-link">Ver</a>
-							<a href="#" class="card-link">Descargar</a>
+							<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+								Más Info
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Aqui va el titulo</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<img class="imagen-popup" src="img/logo.png" alt="" srcset="">
+											<p>
+												<b>Curso Escolar</b>: 19/20</p><br>
+											<p>
+												<b>
+													Profesor responsable</b>: Ambrosio</p><br>
+											<p>
+												<b>Titulacion</b>: 2 DAW</p><br>
+											<p>
+												<b>
+													Privacidad</b>: CopyRight</p><br>
+											<p>
+												<b>Resumen</b>: Lorem ipsum dolor sit amet consectetur</p>
+										</div>
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Visualizar</button>
+											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Descargar</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
