@@ -17,43 +17,42 @@ class Alumnoxpi
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\pi")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Proyecto", inversedBy="alumnoxpis")
      */
-    private $idPI;
+    private $pi_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\alumno")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Alumno", inversedBy="alumnoxpis")
      */
-    private $idAlumno;
+    private $alumno_id;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdPI(): ?pi
+    public function getPiId(): ?proyecto
     {
-        return $this->idPI;
+        return $this->pi_id;
     }
 
-    public function setIdPI(?pi $idPI): self
+    public function setPiId(?proyecto $pi_id): self
     {
-        $this->idPI = $idPI;
+        $this->pi_id = $pi_id;
 
         return $this;
     }
 
-    public function getIdAlumno(): ?alumno
+    public function getAlumnoId(): ?alumno
     {
-        return $this->idAlumno;
+        return $this->alumno_id;
     }
 
-    public function setIdAlumno(?alumno $idAlumno): self
+    public function setAlumnoId(?alumno $alumno_id): self
     {
-        $this->idAlumno = $idAlumno;
+        $this->alumno_id = $alumno_id;
 
         return $this;
     }
+
 }

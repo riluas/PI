@@ -1,0 +1,42 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Proyecto index
+{% endblock %}
+
+{% block contenido %}
+	<h1>Proyecto index</h1>
+
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titulo</th>
+					<th>Curso_escolar</th>
+					<th>Descripcion</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for proyecto in proyectos %}
+					<tr>
+						<td>{{ proyecto.id }}</td>
+						<td>{{ proyecto.titulo }}</td>
+						<td>{{ proyecto.cursoEscolar }}</td>
+						<td>{{ proyecto.descripcion }}</td>
+						<td>
+							<buttons><a href="{{ path('proyecto_show', {'id': proyecto.id}) }}">Mostrar</a><buttons>
+							<a href="{{ path('proyecto_edit', {'id': proyecto.id}) }}">Editar</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">No hay resultados</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</buttons>
+
+	<a href="{{ path('proyecto_new') }}">Añadir</a>
+{% endblock %}

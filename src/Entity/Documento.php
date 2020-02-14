@@ -17,6 +17,11 @@ class Documento
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Proyecto", inversedBy="documentos")
+     */
+    private $pi_id;
+
+    /**
      * @ORM\Column(type="string", length=50)
      */
     private $nombre;
@@ -26,15 +31,21 @@ class Documento
      */
     private $formato;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\pi", inversedBy="documentos")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idPi;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getPiId(): ?proyecto
+    {
+        return $this->pi_id;
+    }
+
+    public function setPiId(?proyecto $pi_id): self
+    {
+        $this->pi_id = $pi_id;
+
+        return $this;
     }
 
     public function getNombre(): ?string
@@ -61,15 +72,8 @@ class Documento
         return $this;
     }
 
-    public function getIdPi(): ?pi
+    /* public function __toString()
     {
-        return $this->idPi;
-    }
-
-    public function setIdPi(?pi $idPi): self
-    {
-        $this->idPi = $idPi;
-
-        return $this;
-    }
+        return $this->getNombre();
+    } */
 }

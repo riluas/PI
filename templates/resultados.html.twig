@@ -1,0 +1,35 @@
+{% extends "layout.html.twig" %}
+{% block contenido %}
+{# <p>{{grado[0].getCursoEscolar()}}</p> #}
+{% if (resultado|length) > 0 %}
+<p>{{resultado[0].getProf().getNombre()}}</p>
+<p>{{resultado[0].getCursoEscolar()}}</p>
+<p>{{resultado[0].getTitulo()}}</p>
+{% endif %}
+
+{% set itemsPerPage = 2 %}
+{% set lowerLimit = (currentPage - 1) * itemsPerPage %}
+{% set upperLimit = currentPage  * itemsPerPage %}
+{% for proyecto in data %}
+	{% if loop.index0 >= lowerLimit and loop.index0 < upperLimit %}
+
+	
+	{% endif %}
+{% endfor %}
+{% set totalItems = data|length %}
+{% set lastPage = ( totalItems /  itemsPerPage )|round(0, 'ceil')  %}
+{% set lastPageItems = ( itemsPerPage * lastPage ) - totalItems %}
+
+{% for i in 1..lastPage %}
+	{% if  i!=currentPage %}
+
+		<a class="page-link" href="{{ path('resultados', {'currentPage':i}) }}">{{ i }}
+		</a>
+
+	{% else %}
+
+		{{ i }}
+
+
+{% endif %}{% endfor %}
+{% endblock %}

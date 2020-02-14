@@ -1,0 +1,22 @@
+{% extends "admin/base.html.twig" %}
+{% block body %}
+<nav class="menu" tabindex="0">
+	<div class="smartphone-menu-trigger"></div>
+	<header class="avatar">
+		<img src="/images/usuario.png"/>
+		<h2>John D.</h2>
+	</header>
+	<ul>
+		<li tabindex="0" class="icon-dashboard"><span>Dashboard</span></li>
+		<li tabindex="0" class="icon-customers"><a href="{{ path('proyecto_index') }}"><span>Proyectos</span></a></li>
+		<li tabindex="0" class="icon-users"><a href="{{ path('documento_index') }}"><span>Documentos</span></a></li>
+		<li tabindex="0" class="icon-users"><span>Usuarios</span></li>
+	</ul>
+</nav>
+
+<main>
+	{% block contenido %}{% endblock %}
+</main>
+   
+</body>
+{% endblock %}

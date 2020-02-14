@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Proyecto{% endblock %}
+
+{% block body %}
+    <h1>Edit Proyecto</h1>
+
+    {{ include('proyecto/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('documento_index', {'id':proyecto.getId()}) }}">Documentos asociados</a>
+
+    <a href="{{ path('proyecto_index') }}">back to list</a>
+
+    {{ include('proyecto/_delete_form.html.twig') }}
+{% endblock %}
