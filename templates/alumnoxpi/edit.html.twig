@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Alumnoxpi
+{% endblock %}
+
+{% block body %}
+	<h1>Editar Alumnoxpi</h1>
+
+
+	<div class="container mt-5">
+		<div class="row ">
+			<div class="col-md-4">
+				{{ include('alumnoxpi/_form.html.twig', {'button_label': 'Guardar'}) }}
+			</div>
+
+			<div class="col-md-4 align-self-end">
+				<a href="{{ path('alumnoxpi_index') }}" class="btn">Volver</a>
+			</div>
+
+			<div class="col-md-4 align-self-end">
+				{{ include('alumnoxpi/_delete_form.html.twig') }}
+			</div>
+
+		</div>
+
+	</div>
+{% endblock %}

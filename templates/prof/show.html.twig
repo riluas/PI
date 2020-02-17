@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profesor
+{% endblock %}
+
+{% block body %}
+	<h1>Profesor</h1>
+	<div class="table-responsive">
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ prof.id }}</td>
+				</tr>
+				<tr>
+					<th>Nombre</th>
+					<td>{{ prof.nombre }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<div class="container-fluid">
+		<div class="row ">
+			<div class="col-md-4">
+				<a href="{{ path('prof_index') }}">Volver</a>
+			</div>
+
+			<div class="col-md-4 align-self-end">
+				<a href="{{ path('prof_edit', {'id': prof.id}) }}">Editar</a>
+			</div>
+
+			<div class="col-md-4 align-self-end ">
+				{{ include('prof/_delete_form.html.twig') }}
+			</div</div>
+
+		</div>
+	</div>
+{% endblock %}

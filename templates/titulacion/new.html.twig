@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva Titulacion
+{% endblock %}
+
+{% block body %}
+	<h1>Crear nueva Titulacion</h1>
+
+	<div class="container mt-5">
+		<div class="row ">
+			<div class="col-md-6">
+				{{ include('titulacion/_form.html.twig') }}
+			</div>
+
+			<div class="col-md-6 align-self-end">
+				<a href="{{ path('titulacion_index') }}">Volver</a>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

@@ -1,138 +1,39 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends "layout.html.twig" %}
+{% block contenido %}
 
-			<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Repositorio Florida</title>
-		<!-- Link a Boostrap -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% if (resultado|length) == 0 %}
+	<div class="container mt-5"> <h2 class="text-center">NO HAY RESULTADOS</h2></div>
+{% endif %}
 
-		<!-- Links CSS -->
-		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/css/styles.css">
-		<link rel="stylesheet" href="/css/popup.css">
-		<link href="/css/main.css" rel="stylesheet"/>
-		<link href="/css/login.css" rel="stylesheet"/>
-		<link href="/css/popup.css" rel="stylesheet"/>
-		
-
-
-		<!-- Scripts JavaScript -->
-		<script src="/js/popup.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/script.js"></script>
-	</head>
-
-		<body>
-		<header>
-			<nav class="navbar navbar-expand-lg navbar-dark nav-color">
-				<a class="navbar-brand" href="index.html"><img src="/images/logo.png" style="margin-left: 45px; margin-top: -6px; margin-bottom:-9px " width="200" alt=""></a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto my-2 my-lg-0">
-						<li class="nav-item"></li>
-						{% if user == ""%}
-							<li>
-								<a href="" class="login w-100 font-weight-bold" data-toggle="modal" data-target="#modalLoginForm">Iniciar Sesión</a>
-							</li>
-						{% endif %}
-						{% if user != "" %}
-
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-									<h4 class="login w-100 font-weight-bold">Hola
-										{{ app.session.get("nombre_usuario") }}</h4>
-								</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href={{ path('logOut') }}>Cerrar Sesión</a>
-								</div>
-							</li>
-
-						{% endif %}
-					</ul>
-				</div>
-			</nav>
-
-			<!-- IMAGEN PRINCIPAL -->
-			<div class="pb-5 container-fluid" style="background-image: url(/images/lel.jpg);background-position:center; background-size:cover ; background-repeat: no-repeat;">
-
-				<div class="jumbotron-fluid text-white">
-
-					<figure><img src="" alt=""></figure>
-
-					<p class="lead">"El misterio de la vida no es un problema a resolver, sino una realidad a experimentar"</p>
-					<p class="ml-5">Duna, Frank Herbert</p>
-
-
-				</div>
-			</div>
-		</header>
-
+{% if (resultado|length) > 0 %}
 		<section>
-			<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header text-center">
-							<h4 class="modal-title w-100 font-weight-bold">Iniciar Sesión</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span class="close-popup" aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<form class="form" action="{{ url("sendlogin") }}" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
-							<div class="form-group">
-								<label for="user">Usuario</label>
-								<input type="text" class="form-control form-control-lg rounded-0" name="user" id="user" required="">
-								<div class="invalid-feedback">Introduce el nombre de usuario</div>
-							</div>
-							<div class="form-group">
-								<label>Contraseña</label>
-								<input type="password" class="form-control form-control-lg rounded-0" name="password" id="password" required="" autocomplete="new-password">
-								<div class="invalid-feedback">Introduce la contraseña</div>
-							</div>
-
-							<div class="modal-footer d-flex justify-content-center">
-								<input type="reset" value="Reset" class="btn btn-lg float-left">
-								<button type="submit" class="btn btn-lg float-right" id="btnLogin">Acceder</button>
-
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!--/container-->
-		</section>
-		
-		<section>
-
-			<div class="container mt-5"> <h2 class="text-center">ULTIMOS TRABAJOS</h2>
-
-			<div class="row mt-5">
-
-				<div class="col-md">
+	<div class="container mt-5"> <h2 class="text-center">RESULTADOS DE LA BÚSQUEDA</h2>
+	<div class="row mt-2">
+	
+{% for item in resultado %}
+{% set counter = ( counter | default(0) ) + 1 %}
+{% set targ = "exampleModal_" ~ counter %}
+				<div class="col-md-4">
 					<div class="card mb-3 text-center">
 						<div class="card-body text-center">
-							<h5 class="card-title">Las aventuras de Tadeo Jones</h5>
-							<h6 class="card-subtitle mb-2 text-muted">Miguel Angelo</h6>
-							<p class="card-text">"Este es un fackin otaku que sale de casa a dar por culo..."</p>
+							
+								<h3 class="card-title">{{item.getTitulo()}}</h3>
+							{% set nombre= item.getAlumnoxpis()[0].getAlumnoId().getNombre() %}
+							{% set apellidos= item.getAlumnoxpis()[0].getAlumnoId().getApellidos() %}
+							
+							<h3 class="card-subtitle mb-2 text-muted">{{nombre}} {{apellidos}}</h3>
+							<p class="card-text">{{item.getDescripcion()}}</p>
 
-							<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+							<button type="button" class="btn" data-toggle="modal" data-target={{"#" ~ targ }}>
 								Más Info
 							</button>
 
 							<!-- Modal -->
-							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="{{ targ }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Aqui va el titulo</h5>
+											<h3 class="modal-title" id="exampleModalLabel">{{item.getTitulo()}}</h3>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
@@ -140,18 +41,19 @@
 										<div class="modal-body">
 											<img class="imagen-popup" src="img/logo.png" alt="" srcset="">
 											<p>
-												<b>Curso Escolar</b>: 19/20</p><br>
+												<b>Curso Escolar</b>: {{item.getCursoEscolar()}}</p><br>
 											<p>
 												<b>
-													Profesor responsable</b>: Ambrosio</p><br>
+													Profesor responsable</b>: {{item.getProf().getNombre()}}</p><br>
 											<p>
-												<b>Titulacion</b>: 2 DAW</p><br>
+												<b>Titulacion</b>: {{item.getTitulacion().getNombre()}}</p><br>
 											<p>
 												<b>
 													Privacidad</b>: CopyRight</p><br>
 											<p>
-												<b>Resumen</b>: Lorem ipsum dolor sit amet consectetur</p>
+												<b>Resumen</b>: {{item.getDescripcion()}}</p>
 										</div>
+										{% set counter = counter + 1 %}
 										<div class="modal-footer">
 											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Visualizar</button>
 											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Descargar</button>
@@ -161,125 +63,14 @@
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body text-center">
-							<h5 class="card-title">Las aventuras de Tadeo Jones</h5>
-							<h6 class="card-subtitle mb-2 text-muted">Miguel Angelo</h6>
-							<p class="card-text">"Este es un fackin otaku que sale de casa a dar por culo..."</p>
-							<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-								Más Info
-							</button>
-
-							<!-- Modal -->
-							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Aqui va el titulo</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<img class="imagen-popup" src="img/logo.png" alt="" srcset="">
-											<p>
-												<b>Curso Escolar</b>: 19/20</p><br>
-											<p>
-												<b>
-													Profesor responsable</b>: Ambrosio</p><br>
-											<p>
-												<b>Titulacion</b>: 2 DAW</p><br>
-											<p>
-												<b>
-													Privacidad</b>: CopyRight</p><br>
-											<p>
-												<b>Resumen</b>: Lorem ipsum dolor sit amet consectetur</p>
-										</div>
-										<div class="modal-footer">
-											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Visualizar</button>
-											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Descargar</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body text-center">
-							<h5 class="card-title">Las aventuras de Tadeo Jones</h5>
-							<h6 class="card-subtitle mb-2 text-muted">Miguel Angelo</h6>
-							<p class="card-text">"Este es un fackin otaku que sale de casa a dar por culo..."</p>
-							<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-								Más Info
-							</button>
-
-							<!-- Modal -->
-							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Aqui va el titulo</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<img class="imagen-popup" src="img/logo.png" alt="" srcset="">
-											<p>
-												<b>Curso Escolar</b>: 19/20</p><br>
-											<p>
-												<b>
-													Profesor responsable</b>: Ambrosio</p><br>
-											<p>
-												<b>Titulacion</b>: 2 DAW</p><br>
-											<p>
-												<b>
-													Privacidad</b>: CopyRight</p><br>
-											<p>
-												<b>Resumen</b>: Lorem ipsum dolor sit amet consectetur</p>
-										</div>
-										<div class="modal-footer">
-											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Visualizar</button>
-											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Descargar</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-			<!--final row -->
-		</section>
-
-		{% block contenido %}{% endblock %}
-		<footer class="mt-5 text-center">
-			<hr>
-			<address>
-				Florida Universitaria Biblioteca<br>
-				floridaUniversitariaBiblioteca@gmail.com
-			</address>
-
-			<ul class="row">
-				<div class="col">
-					<li style="list-style: none;">
-						<a href="https://twitter.com/floridauni"><i><img class="fut" src="/images/twitter.png" alt=""></i></a>
-					</li>
 				</div>
 				
-				<div class="col">
-					<li style="list-style: none;">
-						<a href="https://www.facebook.com/floridauniversitaria"><i><img class="fut" src="/images/logoBlancoFacebook.png" alt=""></i></a>
-					</li>
-				</div>
-			</ul>
-		</footer>
-	</body>
-</html>
+	{% endfor %}
+
+
+</div>
+</div>
+	</section>
+{% endif %}
+{% endblock %}
+

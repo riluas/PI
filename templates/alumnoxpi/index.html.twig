@@ -1,0 +1,35 @@
+{% extends 'admin/layout.html.twig' %}
+{% block title %}Alumnoxpi
+{% endblock %}
+
+{% block contenido %}
+	<h1>Alumnoxpi
+	</h1>
+	<div class="table-responsive">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for alumnoxpi in alumnoxpis %}
+					<tr>
+						<td>{{ alumnoxpi.id }}</td>
+						<td>
+							<a href="{{ path('alumnoxpi_show', {'id': alumnoxpi.id}) }}" class="btn">Mostrar</a>
+							<a href="{{ path('alumnoxpi_edit', {'id': alumnoxpi.id}) }}" class="btn">Editar</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="2">No hay resultados</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<a href="{{ path('alumnoxpi_new') }}" class="btn">Crear nuevo</a>
+{% endblock %}

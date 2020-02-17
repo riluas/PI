@@ -17,7 +17,7 @@ class Documento
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\proyecto", inversedBy="documentos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Proyecto", inversedBy="documentos")
      */
     private $pi_id;
 
@@ -71,4 +71,9 @@ class Documento
 
         return $this;
     }
+
+    /* public function __toString()
+    {
+        return $this->getNombre();
+    } */
 }

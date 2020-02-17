@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Alumnoxpi
+{% endblock %}
+
+{% block body %}
+	<h1>Crear nuevo Alumnoxpi</h1>
+
+
+	<div class="container mt-5">
+		<div class="row ">
+			<div class="col-md-6">
+				{{ include('alumnoxpi/_form.html.twig') }}
+			</div>
+
+			<div class="col-md-6 align-self-end">
+				<a href="{{ path('alumnoxpi_index') }}" class="btn">Volver</a>
+			</div>
+
+		</div>
+
+	</div>
+{% endblock %}

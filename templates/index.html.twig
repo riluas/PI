@@ -1,117 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Repositorio Florida</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/styles.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/script.js"></script>
-		<link href="css/main.css" rel="stylesheet"/>
-	</head>
-
-	<body>
-		<header>
-			<nav class="navbar navbar-expand-lg navbar-dark nav-color">
-				<a class="navbar-brand" href="index.html"><img src="images/logo.png" style="margin-left: 45px; margin-top: -6px; margin-bottom:-9px " width="200" alt=""></a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto my-2 my-lg-0">
-						<li class="nav-item"></li>
-						{% if user == ""%}
-							<li>
-								<div class="row">
-									<img class=""src="images/user1.1.png" style="width:35px;"></img>
-									<a class="nav-link" id="inicio" style="cursor: pointer; color:black;"><strong>Iniciar Sesión</strong></a>
-								</div>
-							</li>
-						{% endif %}
-
-						{% if user != "" %}
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-									<h4>Hola
-										{{ app.session.get("nombre_usuario") }}</h4>
-								</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href={{ path('logOut') }}>Cerrar Sesión</a>
-								</div>
-							</li>
-
-						{% endif %}
-					</ul>
-				</div>
-			</nav>
-
-			<!-- IMAGEN PRINCIPAL -->
-			<div class="pb-5 container-fluid" style="background-image: url(images/lel.jpg);background-position:center; background-size:cover ; background-repeat: no-repeat;">
-
-				<div class="jumbotron-fluid text-white">
-
-					<figure><img src="" alt=""></figure>
-
-					<p class="lead ml-1"><i>"El misterio de la vida no es un problema a resolver, sino una realidad a experimentar"</i></p>
-					<p class="ml-5">Duna, Frank Herbert</p>
-				</div>
-			</div>
-		</header>
-
-		<section>
-			<div class="container py-5" id="session">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="row">
-							<div
-								class="col-md-6 mx-auto">
-								<!-- form card login -->
-								<div class="card rounded-0">
-									<div class="card-header">
-										<h3 class="mb-0">Iniciar Sesión</h3>
-										<p id="cerrar">X</p>
-									</div>
-									<div class="card-body">
-										<form class="form" action="{{ url("sendlogin") }}" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
-											<div class="form-group">
-												<label for="user">Usuario</label>
-												<input type="text" class="form-control form-control-lg rounded-0" name="user" id="user" required="">
-												<div class="invalid-feedback">Introduce el nombre de usuario</div>
-											</div>
-											<div class="form-group">
-												<label>Contraseña</label>
-												<input type="password" class="form-control form-control-lg rounded-0" name="password" id="password" required="" autocomplete="new-password">
-												<div class="invalid-feedback">Introduce la contraseña</div>
-											</div>
-											<input type="reset" class="btn btn-success btn-lg float-right" style="margin-left: 3%;" value="Reset" class="button">
-											<button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Acceder</button>
-											
-										</form>
-									</div>
-									<!--/card-block-->
-								</div>
-								<!-- /form card login -->
-							</div>
-						</div>
-						<!--/row-->
-					</div>
-					<!--/col-->
-				</div>
-				<!--/row-->
-			</div>
-			<!--/container-->
-		</section>
+{% extends "layout.html.twig" %}
+{% block contenido %}
+<section>
 		<div class="s010">
-			<form>
+			<form action="{{ url("resultados") }}" method="POST">
 				<div class="inner-form">
 					<div class="basic-search">
 						<div class="input-field">
-							<input id="search" type="text" placeholder="Buscar..."/>
+							<input id="search" name="titulo" type="text" placeholder="Buscar por título"/>
 							<div class="icon-wrap">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
 									<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
@@ -120,58 +15,49 @@
 						</div>
 					</div>
 					<div class="advance-search">
-						<span class="desc">BÚSQUEDA AVANZADA</span>
+						<span class="desc">BUSQUEDA AVANZADA</span>
 						<div class="row">
-
-						
 							<div class="input-field">
 								<div class="input-select">
-									<select data-trigger="" name="choices-single-defaul">
-										<option placeholder="" value="">Titulación</option>
-										<option>Turismo y ADE</option>
-										<option>Turismo y GIHO</option>
-										<option>Ingeniería Electrónica Industrial y Automática</option>
-										<option>Ingeniería Mecánica</option>
-										<option>Ingeniería Mecánica y Electrónica Industrial y Automática</option>
-										<option>Diseño y Desarrollo de Videojuegos y Experiencias Interactivas</option>
-										<option>Administración y Dirección de Empresas y Título Propio en Digital Business</option>
-										<option>Administración y Dirección de Empresas (nocturno)</option>
-										<option>Maestro/a en Educación Infantil</option>
-										<option>Maestro/a en Educación Primaria</option>
-										<option>Maestro/a en Educación Infantil y Educación Primaria</option>
-										<option>Actualización Grado de Maestro/a</option>
+									<select data-trigger="" name="grado">
+										<option placeholder="" value="">Titulacion</option>
+										{% for grado in dataGrado %}
+											<option value={{grado.getId()}}>{{grado.getNombre()}}</option>
+										{% endfor %}
 									</select>
+
 								</div>
 							</div><br>
-
 							<div class="input-field">
 								<div class="input-select">
-									<select data-trigger="" name="choices-single-defaul">
+									<select data-trigger="" name="profesor">
 										<option placeholder="" value="">Profesor responsable</option>
-										<option>Belen Gil</option>
-										<option>David Soler</option>
-										<option>Vicent Monfort</option>
-										<option>Pedro Elnabo</option>
+										{% for profe in dataProfe %}
+											<option value={{profe.getId()}}>{{profe.getNombre()}}</option>
+										{% endfor %}
 									</select>
 								</div>
 							</div><br>
-
 							<div class="input-field">
 								<div class="input-select">
-									<select data-trigger="" name="choices-single-defaul">
+									<select data-trigger="" name="anyo">
 										<option placeholder="" value="">Año</option>
-										<option>12/13</option>
-										<option>13/14</option>
-										<option>14/15</option>
-										<option>15/16</option>
-										<option>16/17</option>
-										<option>17/18</option>
-										<option>18/19</option>
-										<option>19/20</option>
+										<option value="12/13">08/09</option>
+										<option value="12/13">09/10</option>
+										<option value="12/13">10/11</option>
+										<option value="12/13">11/12</option>
+										<option value="13/14">13/14</option>
+										<option value="14/15">14/15</option>
+										<option value="15/16">15/16</option>
+										<option value="16/17">16/17</option>
+										<option value="17/18">17/18</option>
+										<option value="18/19">18/19</option>
+										<option value="19/20">19/20</option>
 									</select>
 								</div>
 							</div>
-						</div><br>
+						</div>
+						<br>
 
 
 						<div class="row third">
@@ -215,31 +101,77 @@ for (let i = 0; i < deleteAll.length; i++) {
 deleteAll[i].click();
 }
 });
-		</script>
-		{% block contenido %}{% endblock %}
-		
-		<footer class="mt-5 text-center">
-			<hr>
-			<address>
-				Florida Universitaria Biblioteca<br>
-				floridaUniversitariaBiblioteca@gmail.com
-			</address>
+</script>
+</section>
 
-			<ul class="row">
-				<div class="col">
-					<li style="list-style: none;">
-						<a href="https://twitter.com/floridauni"><i><img class="fut" src="images/twitter.png" alt=""></i></a>
-					</li>
+	<!-- MIDDLE CONTENT -->
+	<!-- SECCION ULTIMOS TRABAJOS -->
+<section>
+	<div class="container mt-5"> <h2 class="text-center">ÚLTIMOS TRABAJOS</h2>
+	<div class="row mt-2">
+{% for item in first3 %}
+ 		{% if loop.index0<3 %}
+			
+{% set counter = ( counter | default(0) ) + 1 %}
+{% set targ = "exampleModal_" ~ counter %}
+				<div class="col-md-4">
+					<div class="card mb-3 text-center">
+						<div class="card-body text-center">
+							
+								<h3 class="card-title">{{item.getTitulo()}}</h3>
+							{% set nombre= item.getAlumnoxpis()[0].getAlumnoId().getNombre() %}
+							{% set apellidos= item.getAlumnoxpis()[0].getAlumnoId().getApellidos() %}
+							
+							<h3 class="card-subtitle mb-2 text-muted">{{nombre}} {{apellidos}}</h3>
+							<p class="card-text">{{item.getDescripcion()}}</p>
+
+							<button type="button" class="btn" data-toggle="modal" data-target={{"#" ~ targ }}>
+								Más Info
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="{{ targ }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title" id="exampleModalLabel">{{item.getTitulo()}}</h3>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<img class="imagen-popup" src="img/logo.png" alt="" srcset="">
+											<p>
+												<b>Curso Escolar</b>: {{item.getCursoEscolar()}}</p><br>
+											<p>
+												<b>
+													Profesor responsable</b>: {{item.getProf().getNombre()}}</p><br>
+											<p>
+												<b>Titulacion</b>: {{item.getTitulacion().getNombre()}}</p><br>
+											<p>
+												<b>
+													Privacidad</b>: CopyRight</p><br>
+											<p>
+												<b>Resumen</b>: {{item.getDescripcion()}}</p>
+										</div>
+										
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Visualizar</button>
+											<button type="submit" class="btn btn-lg float-right" id="btnLogin">Descargar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				
-				<div class="col">
-					<li style="list-style: none;">
-						<a href="https://www.facebook.com/floridauniversitaria"><i><img class="fut" src="images/facebook.png" alt=""></i></a>
-					</li>
-				</div>
-			</ul>
+	
+{% endif %}
+{% endfor %}
+</div>
+</div>
+	</section>
+	<!-- FIN MIDDLE CONTENT .................... -->
 
-		</footer>
-	</body>
-
-</html>
+{% endblock %}

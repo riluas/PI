@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Proyecto
+{% endblock %}
+
+{% block body %}
+	<h1 style="text-align:center;margin-top:20px;margin-bottom:50px">Editar Proyecto</h1>
+	<div class="container mt-5">
+		<div class="row mt-5">
+			<div class="col-md-5 ">
+				{{ include('proyecto/_form.html.twig', {'button_label': 'Update'}) }}
+			</div>
+
+			<div class="col-md-2 align-self-end">
+				<a href="{{ path('documento_index', {'id':proyecto.getId()}) }}" class="btn">Documentos</a>
+			</div>
+
+			<div class="col-md-2 align-self-end">
+				<a href="{{ path('proyecto_index') }}" class="btn">Volver
+				</a>
+			</div>
+
+			<div class="col-md-2 align-self-end">
+				{{ include('proyecto/_delete_form.html.twig') }}
+			</div>
+		</div>
+
+	{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Alumnos
+{% endblock %}
+
+{% block contenido %}
+	<h1>Alumnos</h1>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Apellidos</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for alumno in alumnos %}
+					<tr>
+						<td>{{ alumno.id }}</td>
+						<td>{{ alumno.nombre }}</td>
+						<td>{{ alumno.apellidos }}</td>
+						<td>
+							<a href="{{ path('alumno_show', {'id': alumno.id}) }}" class="btn">Mostrar</a>
+							<a href="{{ path('alumno_edit', {'id': alumno.id}) }}" class="btn">Editar</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">No hay resultados</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<a href="{{ path('alumno_new') }}" class="btn">Añadir</a>
+{% endblock %}

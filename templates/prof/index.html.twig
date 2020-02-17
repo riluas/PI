@@ -1,0 +1,38 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Profesores
+{% endblock %}
+
+{% block contenido %}
+	<h1>Profesores</h1>
+	<div class="table-responsive">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for prof in profs %}
+					<tr>
+						<td>{{ prof.id }}</td>
+						<td>{{ prof.nombre }}</td>
+						<td>
+							<a href="{{ path('prof_show', {'id': prof.id}) }}" class="btn">Mostrar</a>
+							<a href="{{ path('prof_edit', {'id': prof.id}) }}" class="btn">Editar</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">No hay resultados</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<a href="{{ path('prof_new') }}" class="btn">Añadir</a>
+{% endblock %}

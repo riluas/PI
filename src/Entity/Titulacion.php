@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,58 +19,70 @@ class Titulacion
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\proyecto", inversedBy="titulacions")
-     */
-    private $pi_id;
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
-    private $titulo;
+    private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\OneToMany(targetEntity="App\Entity\Proyecto", mappedBy="titulacion")
      */
-    private $curso;
+    private $proyectos;
+
+
+    public function __construct()
+    {
+        $this->proyectos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPiId(): ?proyecto
+    public function getNombre(): ?string
     {
-        return $this->pi_id;
+        return $this->nombre;
     }
 
-    public function setPiId(?proyecto $pi_id): self
+    public function setNombre(string $nombre): self
     {
-        $this->pi_id = $pi_id;
+        $this->nombre = $nombre;
 
         return $this;
     }
 
-    public function getTitulo(): ?string
+    /**
+     * @return Collection|Proyecto[]
+     */
+    public function getProyectos(): Collection
     {
-        return $this->titulo;
+        return $this->proyectos;
     }
 
-    public function setTitulo(string $titulo): self
+    public function addProyecto(Proyecto $proyecto): self
     {
-        $this->titulo = $titulo;
+        if (!$this->proyectos->contains($proyecto)) {
+            $this->proyectos[] = $proyecto;
+            $proyecto->setTitulacion($this);
+        }
 
         return $this;
     }
 
-    public function getCurso(): ?string
+    public function removeProyecto(Proyecto $proyecto): self
     {
-        return $this->curso;
-    }
-
-    public function setCurso(string $curso): self
-    {
-        $this->curso = $curso;
+        if ($this->proyectos->contains($proyecto)) {
+            $this->proyectos->removeElement($proyecto);
+            // set the owning side to null (unless already changed)
+            if ($proyecto->getTitulacion() === $this) {
+                $proyecto->setTitulacion(null);
+            }
+        }
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->getNombre();
     }
 }

@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('alumnoxpi_delete', {'id': alumnoxpi.id}) }}" onsubmit="return confirm('Estas seguro que quieres eliminar esta relacion?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ alumnoxpi.id) }}">
+    <button class="btn">Eliminar</button>
+</form>

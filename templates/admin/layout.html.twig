@@ -1,0 +1,27 @@
+{% extends "admin/base.html.twig" %}
+{% block body %}
+<nav class="menu" tabindex="0">
+	<div class="smartphone-menu-trigger"></div>
+	<header class="avatar">
+		<img src="/images/usuario.png"/>
+		<h2>Admin.</h2>
+	</header>
+	<ul>
+		<li tabindex="0" class="icon-dashboard"><span>Dashboard</span></li>
+		<li tabindex="0" class="icon-customers"><a href="{{ path('proyecto_index') }}"><span>Proyectos</span></a></li>
+		<li tabindex="0" class="icon-customers"><a href="{{ path('titulacion_index') }}"><span>Titulación</span></a></li>
+		<li tabindex="0" class="icon-users"><a href="{{ path('documento_index') }}"><span>Documentos</span></a></li>
+		<li tabindex="0" class="icon-customers"><a href="{{ path('alumno_index') }}"><span>Alumno</span></a></li>
+		<li tabindex="0" class="icon-users"><a href="{{ path('alumnoxpi_index') }}"><span>AlumnoxPI</span></a></li>
+		<li tabindex="0" class="icon-users"><a href="{{ path('prof_index') }}"><span>Profesor</span></a></li>
+		<li tabindex="0" class="icon-users"><a href="{{ path('user_index') }}"><span>Usuarios</span></a></li>
+		<li tabindex="0" class="" ><span><a href={{ path('AdminlogOut') }}>Cerrar Sesión</a></span></li>
+	</ul>
+</nav>
+
+<main>
+	{% block contenido %}{% endblock %}
+</main>
+   
+</body>
+{% endblock %}

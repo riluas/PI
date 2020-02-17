@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuario
+{% endblock %}
+
+{% block body %}
+	<h1>Usuario</h1>
+	<div class="table-responsive">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ user.id }}</td>
+				</tr>
+				<tr>
+					<th>Nombre Usuario</th>
+					<td>{{ user.username }}</td>
+				</tr>
+				<tr>
+					<th>Roles</th>
+					<td>{{ user.roles ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>Contraseña</th>
+					<td>{{ user.password }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row ">
+			<div class="col-md-4">
+				<a href="{{ path('user_index') }}" class="btn">Volver</a>
+			</div>
+
+			<div class="col-md-4 align-self-end">
+				<a href="{{ path('user_edit', {'id': user.id}) }}" class="btn">Editar</a>
+			</div>
+
+			<div class="col-md-4 align-self-end ">
+				{{ include('user/_delete_form.html.twig') }}
+			</div</div>
+
+		</div>
+	</div>
+
+{% endblock %}

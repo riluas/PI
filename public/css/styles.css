@@ -1,12 +1,37 @@
-.nav-color{
+.nav-color {
     background-color: rgb(229, 35, 48);
 }
 
-.footer-color{
+.footer-color {
     background-color: #7f7c79;
 }
 
-#cerrar{
+
+.modal-body {
+    text-align: left;
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+
+.btn2{
+    color: black;
+    width: 105.3px;
+    margin-left: 25px;
+    background-color: #d8cfca;
+    border-color: black;
+}
+
+.btn2:hover {
+    color: white;
+    background-color: #f11927;
+    border-color: #f11927;
+}
+
+
+#cerrar {
     cursor: pointer;
     color: hsla(356, 77%, 56%, 0.938);
     position: relative;
@@ -16,23 +41,79 @@
     font-size: 20px;
     font-weight: bold;
 }
-#session{
+
+#session {
     z-index: 10;
     position: absolute;
     display: none;
-    margin-top: -15%; 
+    margin-top: -15%;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
-    
 }
 
-#cerrar:hover{
-   color: rgb(229, 35, 48);
+#cerrar:hover {
+    color: rgb(229, 35, 48);
 }
 
-.fut:hover{
-    opacity: 0.2;
+.fut:hover {
+    opacity: 0.5;
     transition: 1.5s;
+}
+
+.col-md-4 {
+    text-align: center;
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+footer{
+    background-color: #f11927;
+    color: white;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ img.fut {
+    height:70px;
+    padding-bottom:15px
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 15px;
+    margin-left: -15px;
+}
+
+.card {
+    height: 250px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+}
+
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 15px;
 }

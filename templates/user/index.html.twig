@@ -1,0 +1,39 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Usuarios{% endblock %}
+
+{% block contenido %}
+    <h1>Usuarios</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre Usuario</th>
+                <th>Roles</th>
+                <th>Contraseña</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.roles ? 'Yes' : 'No' }}</td>
+                <td>{{ user.password }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}" class="btn">Mostrar</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No hay resultados</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_new') }}" class="btn">Añadir</a>
+{% endblock %}

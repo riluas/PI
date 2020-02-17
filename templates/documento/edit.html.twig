@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Documento
+{% endblock %}
+
+{% block body %}
+	<h1 style="text-align:center">Editar Documento</h1>
+
+
+	<div class="container mt-5">
+		<div class="row ">
+			<div class="col-md-4 align-self-end">
+				{{ include('documento/_form.html.twig', {'button_label': 'Update'}) }}
+			</div>
+
+			<div class="col-md-4 align-self-end">
+				<a href="{{ path('documento_index') }}" class="btn">Volver</a>
+			</div>
+
+			<div class="col-md-4 align-self-end">
+				{{ include('documento/_delete_form.html.twig') }}
+			</div>
+
+		</div>
+
+	</div>
+
+
+{% endblock %}

@@ -17,12 +17,12 @@ class Alumnoxpi
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\proyecto", inversedBy="alumnoxpis")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Proyecto", inversedBy="alumnoxpis")
      */
     private $pi_id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Alumno", inversedBy="alumnoxpis")
      */
     private $alumno_id;
 
@@ -43,15 +43,16 @@ class Alumnoxpi
         return $this;
     }
 
-    public function getAlumnoId(): ?int
+    public function getAlumnoId(): ?alumno
     {
         return $this->alumno_id;
     }
 
-    public function setAlumnoId(int $alumno_id): self
+    public function setAlumnoId(?alumno $alumno_id): self
     {
         $this->alumno_id = $alumno_id;
 
         return $this;
     }
+
 }

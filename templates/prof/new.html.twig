@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Prof
+{% endblock %}
+
+{% block body %}
+	<h1>Crear nuevo Profesor</h1>
+
+
+	<div class="container mt-5">
+		<div class="row ">
+			<div class="col-md-6">
+				{{ include('prof/_form.html.twig') }}
+			</div>
+
+			<div class="col-md-6 align-self-end">
+				<a href="{{ path('prof_index') }}">Volver</a>
+			</div>
+
+		</div>
+
+	</div>
+{% endblock %}

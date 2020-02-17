@@ -1,0 +1,37 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Titulaciones
+{% endblock %}
+
+{% block contenido %}
+	<h1>Titulaciones</h1>
+	<div class="table-responsive">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for titulacion in titulacions %}
+					<tr>
+						<td>{{ titulacion.id }}</td>
+						<td>{{ titulacion.nombre }}</td>
+						<td>
+							<a href="{{ path('titulacion_show', {'id': titulacion.id}) }}" class="btn">Mostrar</a>
+							<a href="{{ path('titulacion_edit', {'id': titulacion.id}) }}" class="btn">Editar</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">No hay resultados</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<a href="{{ path('titulacion_new') }}" class="btn">Crear nuevo</a>
+{% endblock %}
